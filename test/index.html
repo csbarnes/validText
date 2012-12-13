@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+	
+	<title>Testing validText</title>
+	
+	
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link href='http://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/site.css" />
+	<link rel="stylesheet" type="text/css" media="screen and (min-width: 1140px)" href="css/desktop.css" />
+	<link rel="stylesheet" type="text/css" media="screen and (max-width: 1140px)" href="css/responsive.css" />
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.validText.js"></script>
+	<script type="text/javascript">		
+		$(document).ready(function(){
+			$("#some_text").validText({add_class_success: "success", max_length: 10, callback_failure: function(i){
+				if(i == "min_length"){
+					alert("min");
+				}
+				else if(i == "max_length"){
+					alert("max");
+				}
+				else if(i == "invalid"){
+					alert("regex");
+				}
+			}});
+			$("#some_email").validText({min_length: 6, override_regex: /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/, add_class_success: "success"});
+		});
+	</script>
+	
+	<style type="text/css">
+		.vt-failure{
+			color:#f00;
+		}
+	</style>
+</head>
+
+<body>
+	<label for="some_text">Username:(to characters max, must start with a letter and only contain numbers and letters)</label><br />
+	<input id="some_text" type="text" /><br /><br />
+	<label for="some_email">Email:</label><br />
+	<input id="some_email" type="text" />
+</body>
+</html>
